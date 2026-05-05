@@ -128,19 +128,19 @@ No real credentials or production data are included in this repository.
 ---## 📸 Screenshots
 
 ### 🏠 Home Page
-![Home Page](static/screenshots/home.png)
+![home](static/screenshots/home.png)
 
 ### 📩 Contact Form
-![Contact Form](static/screenshots/contact.png)
+![contact](static/screenshots/contact.png)
 
 ### 📊 Admin Dashboard
-![company_website](static/screenshots/About.png)
+![About](static/screenshots/About.png)
 
 ### ⚙️ Admin Panel
 ![Admin](static/screenshots/admin.png)
 
 ### 📩 Services
-![Services Form](static/screenshots/Services.png)
+![Services](static/screenshots/Services.png)
 
 
 
