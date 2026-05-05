@@ -128,16 +128,16 @@ No real credentials or production data are included in this repository.
 ---## 📸 Screenshots
 
 ### 🏠 Home Page
-![home](static/screenshots/home.png)
+![Home](static/screenshots/Home.png)
 
 ### 📩 Contact Form
-![contact](static/screenshots/contact.png)
+![Contact](static/screenshots/Contact.png)
 
-### 📊 Admin Dashboard
+### 📊 About Dashboard
 ![About](static/screenshots/About.png)
 
 ### ⚙️ Admin Panel
-![Admin](static/screenshots/admin.png)
+![Admin](static/screenshots/Admin.png)
 
 ### 📩 Services
 ![Services](static/screenshots/Services.png)
