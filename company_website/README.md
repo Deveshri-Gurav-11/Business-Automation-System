@@ -130,7 +130,7 @@ No real credentials or production data are included in this repository.
 ### 🏠 Home Page
 ![Home](static/screenshots/Home.png)
 
-### 📩 Contact Form
+### 📩 Contact Page
 ![Contact](static/screenshots/Contact.png)
 
 ### 📊 About Dashboard
