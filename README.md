@@ -27,7 +27,7 @@ It allows users to submit data through a form, stores it in a database, and trig
 
 * **Frontend:** HTML5, CSS3
 * **Backend:** Python, Flask
-* **Database:** PostgreSQL   
+* **Database:** PostgreSQL
 * **Libraries:**
 
   * smtplib (Email sending)
