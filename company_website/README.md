@@ -134,7 +134,7 @@ No real credentials or production data are included in this repository.
 ![Contact Form](static/screenshots/contact.png)
 
 ### 📊 Admin Dashboard
-![About](static/screenshots/About.png)
+![company_website](static/screenshots/About.png)
 
 ### ⚙️ Admin Panel
 ![Admin](static/screenshots/admin.png)
