@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AUtomation sYstem</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--dp-navy:#041f49;--dp-dark:#125394;--dp-blue:#394297;--dp-cyan:#4f509c;--dp-orange:#f76b1c;--dp-green:#1021b9;--dp-red:#ef4444;--dp-white:#ffffff;--dp-muted:#7b8baa;--dp-border:rgba(255,255,255,0.08);--dp-card:rgba(255,255,255,0.04);--radius:10px;--transition:0.3s cubic-bezier(.4,0,.2,1)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'DM Sans',sans-serif;background:var(--dp-navy);color:var(--dp-white);min-height:100vh;line-height:1.6}
+    a{text-decoration:none;color:inherit}ul{list-style:none}
+    /* LOGIN */
+    .login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(26,79,214,.2) 0%,transparent 70%),var(--dp-navy);padding:24px}
+    .login-box{background:var(--dp-dark);border:1px solid var(--dp-border);border-radius:16px;padding:48px 40px;width:100%;max-width:420px;text-align:center}
+    .login-logo{display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:800;margin-bottom:32px}
+    .logo-badge{width:40px;height:40px;background:linear-gradient(135deg,var(--dp-blue),var(--dp-cyan));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+    .logo-dp{color:var(--dp-cyan)}
+    .login-box h2{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:800;margin-bottom:8px}
+    .login-box p{color:var(--dp-muted);font-size:.88rem;margin-bottom:28px}
+    .form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;text-align:left}
+    .form-group label{font-size:.8rem;font-weight:600;color:var(--dp-muted);letter-spacing:.04em}
+    .form-group input{background:var(--dp-card);border:1px solid var(--dp-border);border-radius:8px;padding:12px 16px;color:var(--dp-white);font-family:'DM Sans',sans-serif;font-size:.9rem;transition:border-color var(--transition);outline:none;width:100%}
+    .form-group input:focus{border-color:rgba(0,194,224,.5)}
+    .form-group input::placeholder{color:rgba(123,139,170,.5)}
+    .login-err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:10px 14px;color:#fca5a5;font-size:.84rem;margin-bottom:16px;display:none}
+    .btn-login{width:100%;background:linear-gradient(135deg,var(--dp-blue),var(--dp-cyan));color:var(--dp-white);padding:13px;border-radius:8px;font-size:.95rem;font-weight:600;border:none;cursor:pointer;transition:all var(--transition)}
+    .btn-login:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,194,224,.3)}
+    .login-hint{margin-top:16px;font-size:.78rem;color:var(--dp-muted)}
+    /* DASHBOARD */
+    .admin-layout{display:none;min-height:100vh}
+    .sidebar{width:240px;background:var(--dp-dark);border-right:1px solid var(--dp-border);position:fixed;top:0;left:0;bottom:0;display:flex;flex-direction:column;padding:24px 0;z-index:50}
+    .sidebar-logo{display:flex;align-items:center;gap:10px;font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:800;padding:0 20px 24px;border-bottom:1px solid var(--dp-border);margin-bottom:8px}
+    .sidebar-section{padding:8px 12px 4px;font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dp-muted)}
+    .sidebar-link{display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--dp-muted);font-size:.88rem;font-weight:500;transition:all var(--transition);cursor:pointer;border:none;background:none;width:100%;text-align:left}
+    .sidebar-link:hover,.sidebar-link.active{color:var(--dp-white);background:var(--dp-card)}
+    .sidebar-link.active{color:var(--dp-cyan);border-right:2px solid var(--dp-cyan)}
+    .sidebar-link .icon{font-size:1rem;width:20px;text-align:center}
+    .sidebar-bottom{margin-top:auto;padding:16px 12px;border-top:1px solid var(--dp-border)}
+    .logout-btn{display:flex;align-items:center;gap:8px;padding:8px 12px;color:var(--dp-muted);font-size:.85rem;cursor:pointer;border-radius:6px;transition:all var(--transition);border:none;background:none;width:100%}
+    .logout-btn:hover{color:var(--dp-red);background:rgba(239,68,68,.08)}
+    .main-area{margin-left:240px;padding:32px;flex:1}
+    .top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px}
+    .top-bar h1{font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:800}
+    .top-bar-right{display:flex;align-items:center;gap:12px}
+    .admin-badge{background:rgba(0,194,224,.1);border:1px solid rgba(0,194,224,.2);border-radius:8px;padding:6px 14px;font-size:.8rem;color:var(--dp-cyan);font-weight:600}
+    /* STAT CARDS */
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+    .stat-card{background:var(--dp-card);border:1px solid var(--dp-border);border-radius:var(--radius);padding:20px 24px;transition:all var(--transition)}
+    .stat-card:hover{border-color:rgba(0,194,224,.3)}
+    .stat-card .sc-label{font-size:.78rem;color:var(--dp-muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+    .stat-card .sc-num{font-family:'Barlow Condensed',sans-serif;font-size:2.4rem;font-weight:800;line-height:1;margin-bottom:4px}
+    .stat-card .sc-change{font-size:.78rem}
+    .change-up{color:var(--dp-green)}.change-dn{color:var(--dp-red)}
+    /* PANELS */
+    .panel{background:var(--dp-card);border:1px solid var(--dp-border);border-radius:var(--radius);padding:24px;margin-bottom:24px}
+    .panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+    .panel-title{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700}
+    .btn-sm{padding:6px 14px;border-radius:6px;font-size:.8rem;font-weight:600;cursor:pointer;transition:all var(--transition);border:none}
+    .btn-primary-sm{background:linear-gradient(135deg,var(--dp-blue),var(--dp-cyan));color:var(--dp-white)}
+    .btn-ghost-sm{background:transparent;color:var(--dp-muted);border:1px solid var(--dp-border)}.btn-ghost-sm:hover{color:var(--dp-white);border-color:rgba(0,194,224,.3)}
+    /* TABLE */
+    .table-wrap{overflow-x:auto}
+    table{width:100%;border-collapse:collapse}
+    thead th{font-size:.75rem;font-weight:700;color:var(--dp-muted);letter-spacing:.08em;text-transform:uppercase;padding:10px 14px;text-align:left;border-bottom:1px solid var(--dp-border)}
+    tbody tr{border-bottom:1px solid rgba(255,255,255,.04);transition:background var(--transition)}
+    tbody tr:hover{background:rgba(255,255,255,.03)}
+    tbody td{padding:12px 14px;font-size:.87rem;color:var(--dp-white)}
+    .status-badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.74rem;font-weight:600}
+    .status-new{background:rgba(0,194,224,.12);color:var(--dp-cyan);border:1px solid rgba(0,194,224,.25)}
+    .status-pending{background:rgba(247,107,28,.12);color:var(--dp-orange);border:1px solid rgba(247,107,28,.25)}
+    .status-done{background:rgba(16,185,129,.12);color:var(--dp-green);border:1px solid rgba(16,185,129,.25)}
+    .status-cancelled{background:rgba(239,68,68,.1);color:#fca5a5;border:1px solid rgba(239,68,68,.25)}
+    /* TABS */
+    .tab-row{display:flex;gap:8px;margin-bottom:24px}
+    .tab-b{padding:7px 16px;border-radius:6px;font-size:.84rem;font-weight:500;cursor:pointer;border:1px solid var(--dp-border);background:transparent;color:var(--dp-muted);transition:all var(--transition);font-family:'DM Sans',sans-serif}
+    .tab-b.active,.tab-b:hover{background:var(--dp-card);color:var(--dp-white);border-color:rgba(0,194,224,.3)}
+    .tab-b.active{color:var(--dp-cyan)}
+    .tab-content{display:none}.tab-content.active{display:block}
+    /* ACTIVITY */
+    .activity-item{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+    .activity-item:last-child{border-bottom:none}
+    .activity-dot{width:8px;height:8px;border-radius:50%;background:var(--dp-cyan);margin-top:6px;flex-shrink:0}
+    .activity-item p{font-size:.87rem;color:var(--dp-white);margin-bottom:2px}
+    .activity-item span{font-size:.78rem;color:var(--dp-muted)}
+    /* MINI FORM */
+    .mini-form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .mf-group{display:flex;flex-direction:column;gap:5px}
+    .mf-group.full{grid-column:1/-1}
+    .mf-group label{font-size:.78rem;font-weight:600;color:var(--dp-muted)}
+    .mf-group input,.mf-group select,.mf-group textarea{background:rgba(255,255,255,.06);border:1px solid var(--dp-border);border-radius:6px;padding:9px 12px;color:var(--dp-white);font-family:'DM Sans',sans-serif;font-size:.87rem;outline:none;transition:border-color var(--transition);width:100%}
+    .mf-group input:focus,.mf-group select:focus,.mf-group textarea:focus{border-color:rgba(0,194,224,.5)}
+    .mf-group select option{background:var(--dp-dark)}
+    .mf-group textarea{resize:vertical;min-height:80px}
+
+    @media(max-width:900px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){.sidebar{display:none}.main-area{margin-left:0}.stats-row{grid-template-columns:1fr}.mini-form{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-box">
+      <div class="login-logo">
+        <div class="logo-badge">⚡</div>
+        <span><span class="logo-dp">AUTO</span> System</span>
+      </div>
+      <h2>Welcome Back</h2>
+      <p>Sign in to access the AUTO System admin panel</p>
+      <div class="login-err" id="loginErr">Invalid username or password.</div>
+      <div class="form-group">
+        <label>Username</label>
+<input type="text" id="username" placeholder="demo" />
+
+</div>
+<div class="form-group">
+  <label>Password</label>
+  <input type="password" id="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/>
+</div>
+
+<button class="btn-login" onclick="doLogin()">Sign In →</button>
+
+<div class="login-hint">
+  Demo credentials: demo / demo123
+</div>
+  <!-- DASHBOARD -->
+  <div class="admin-layout" id="adminLayout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-badge">⚡</div>
+        <span><span class="logo-dp">AUTO</span> System</span>
+      </div>
+      <div class="sidebar-section">Main</div>
+      <button class="sidebar-link active" onclick="showTab('dashboard',this)"><span class="icon">📊</span> Dashboard</button>
+      <button class="sidebar-link" onclick="showTab('enquiries',this)"><span class="icon">📨</span> Enquiries</button>
+      <button class="sidebar-link" onclick="showTab('products',this)"><span class="icon">📦</span> Products</button>
+      <button class="sidebar-link" onclick="showTab('clients',this)"><span class="icon">👥</span> Clients</button>
+      <div class="sidebar-section" style="margin-top:8px">Tools</div>
+      <button class="sidebar-link" onclick="showTab('reports',this)"><span class="icon">📈</span> Reports</button>
+      <button class="sidebar-link" onclick="showTab('settings',this)"><span class="icon">⚙️</span> Settings</button>
+      <div class="sidebar-bottom">
+        <button class="logout-btn" onclick="doLogout()">🚪 Sign Out</button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main-area">
+     <!-- DASHBOARD TAB -->
+<div class="tab-content active" id="tab-dashboard">
+  <div class="top-bar">
+    <div>
+      <div style="font-size:.78rem;color:var(--dp-muted);margin-bottom:4px;font-family:'Barlow Condensed',sans-serif;letter-spacing:.1em;text-transform:uppercase">
+        Admin Panel
+      </div>
+      <h1>Dashboard</h1>
+    </div>
+    <div class="top-bar-right">
+      <div class="admin-badge">🟢 Live</div>
+      <div style="font-size:.84rem;color:var(--dp-muted)" id="dateDisplay"></div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+
+  <div class="stat-card">
+    <div class="sc-label">Total Requests</div>
+    <div class="sc-num text-cyan">48</div>
+    <div class="sc-change change-up">↑ 12% this month</div>
+  </div>
+
+  <div class="stat-card">
+    <div class="sc-label">Pending Tasks</div>
+    <div class="sc-num" style="color:var(--dp-orange)">11</div>
+    <div class="sc-change change-dn">3 pending actions</div>
+  </div>
+
+  <div class="stat-card">
+    <div class="sc-label">Active Users</div>
+    <div class="sc-num">284</div>
+    <div class="sc-change change-up">↑ 5 new this week</div>
+  </div>
+
+  <div class="stat-card">
+    <div class="sc-label">Automation Processes</div>
+    <div class="sc-num" style="color:var(--dp-green)">63</div>
+    <div class="sc-change change-up">↑ 4 new processes</div>
+  </div>
+
+</div>
+
+  <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:24px">
+    
+    <!-- TABLE -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">Recent Enquiries</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Name</th><th>Product</th><th>Phone</th><th>Status</th></tr></thead>
+          <tbody>
+            <!-- Sample Demo Data -->
+            <tr><td>John Doe</td><td>UPS System</td><td>9000000001</td><td><span class="status-badge status-new">New</span></td></tr>
+            <tr><td>ABC Solutions</td><td>Battery Backup</td><td>9000000002</td><td><span class="status-badge status-pending">Pending</span></td></tr>
+            <tr><td>XYZ Tech Ltd</td><td>Maintenance Service</td><td>9000000003</td><td><span class="status-badge status-done">Closed</span></td></tr>
+            <tr><td>Demo Electronics</td><td>Power System</td><td>9000000004</td><td><span class="status-badge status-new">New</span></td></tr>
+            <tr><td>Sample Healthcare</td><td>UPS + Battery</td><td>9000000005</td><td><span class="status-badge status-pending">Pending</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ACTIVITY -->
+    <div class="panel">
+      <div class="panel-header"><div class="panel-title">Recent Activity</div></div>
+      <div class="activity-item"><div class="activity-dot"></div><div><p>New enquiry from John Doe</p><span>2 hours ago</span></div></div>
+      <div class="activity-item"><div class="activity-dot" style="background:var(--dp-green)"></div><div><p>Service completed — XYZ Tech Ltd</p><span>5 hours ago</span></div></div>
+      <div class="activity-item"><div class="activity-dot" style="background:var(--dp-orange)"></div><div><p>Quote sent to ABC Solutions</p><span>Yesterday</span></div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ENQUIRIES TAB -->
+<div class="tab-content" id="tab-enquiries">
+  <div class="top-bar"><h1>Enquiries</h1></div>
+
+  <div class="panel">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Name</th><th>Company</th><th>Product</th><th>Phone</th><th>Date</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>001</td><td>John Doe</td><td>—</td><td>UPS System</td><td>9000000001</td><td>01 Jan 2025</td><td><span class="status-badge status-new">New</span></td></tr>
+          <tr><td>002</td><td>ABC Solutions</td><td>ABC Solutions</td><td>Battery Unit</td><td>9000000002</td><td>02 Jan 2025</td><td><span class="status-badge status-pending">Pending</span></td></tr>
+          <tr><td>003</td><td>XYZ Tech Ltd</td><td>XYZ Tech</td><td>AMC Service</td><td>9000000003</td><td>03 Jan 2025</td><td><span class="status-badge status-done">Closed</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- CLIENTS TAB -->
+<div class="tab-content" id="tab-clients">
+  <div class="top-bar"><h1>Clients</h1></div>
+  <div class="panel">
+    <table>
+      <thead><tr><th>Name</th><th>Type</th><th>City</th><th>Phone</th></tr></thead>
+      <tbody>
+        <tr><td>Global Corp</td><td>Enterprise</td><td>Mumbai</td><td>9000000010</td></tr>
+        <tr><td>HealthPlus</td><td>Healthcare</td><td>Pune</td><td>9000000011</td></tr>
+        <tr><td>TechNova</td><td>IT</td><td>Bangalore</td><td>9000000012</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SETTINGS TAB -->
+<div class="tab-content" id="tab-settings">
+  <div class="top-bar"><h1>Settings</h1></div>
+
+  <div class="panel">
+    <div class="mini-form">
+      <div class="mf-group full"><label>Business Name</label><input value="Automation System"/></div>
+      <div class="mf-group"><label>Sales Phone</label><input value="+91 9000000000"/></div>
+      <div class="mf-group"><label>Support Phone</label><input value="+91 9000000001"/></div>
+      <div class="mf-group"><label>Email</label><input value="support@example.com"/></div>
+      <div class="mf-group full"><label>Address</label><textarea>Sample Address, India</textarea></div>
+    </div>
+  </div>
+</div>
+          <div style="margin-top:20px"><button class="btn-sm btn-primary-sm" style="padding:10px 24px">Update Password</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function doLogin(){
+      const u=document.getElementById('username').value;
+      const p=document.getElementById('password').value;
+      if(u==='admin'&&p==='admin123'){
+        document.getElementById('loginScreen').style.display='none';
+        document.getElementById('adminLayout').style.display='flex';
+        document.getElementById('dateDisplay').textContent=new Date().toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+      } else {
+        document.getElementById('loginErr').style.display='block';
+      }
+    }
+    function doLogout(){
+      document.getElementById('loginScreen').style.display='flex';
+      document.getElementById('adminLayout').style.display='none';
+    }
+    function showTab(tabId, btn){
+      document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+      document.getElementById('tab-'+tabId).classList.add('active');
+      document.querySelectorAll('.sidebar-link').forEach(l=>l.classList.remove('active'));
+      if(btn) btn.classList.add('active');
+    }
+    function showAddEnquiry(){
+      const p=document.getElementById('addEnquiryPanel');
+      p.style.display=p.style.display==='none'?'block':'none';
+    }
+  </script>
+</body>
+</html>

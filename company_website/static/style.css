@@ -1,0 +1,60 @@
+/* General */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #0a7f3f !important;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.nav-link {
+    margin-left: 15px;
+    font-weight: 500;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(to right, #0a7f3f, #1db954);
+    color: white;
+    padding: 80px 20px;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 25px;
+}
+
+/* Cards */
+.service-card {
+    border: none;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Form */
+form {
+    background: white;
+    border-radius: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #0a7f3f;
+    color: white;
+    padding: 10px;
+}
+
+.container {
+    padding-top: 30px;
+}

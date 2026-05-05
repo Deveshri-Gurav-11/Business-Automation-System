@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us AUTO System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--dp-navy:#0a1628;--dp-dark:#111c2e;--dp-blue:#1a4fd6;--dp-cyan:#00c2e0;--dp-orange:#f76b1c;--dp-white:#ffffff;--dp-muted:#7b8baa;--dp-border:rgba(255,255,255,0.08);--dp-card:rgba(255,255,255,0.04);--radius:10px;--transition:0.3s cubic-bezier(.4,0,.2,1)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;background:var(--dp-navy);color:var(--dp-white);line-height:1.6;overflow-x:hidden}
+    a{text-decoration:none;color:inherit}img{max-width:100%;display:block}ul{list-style:none}
+    .topbar{background:var(--dp-dark);border-bottom:1px solid var(--dp-border);padding:8px 0;font-size:.78rem;color:var(--dp-muted)}
+    .topbar-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+    .topbar a{color:var(--dp-cyan)}.topbar-contact{display:flex;gap:24px;flex-wrap:wrap}.topbar-contact span{display:flex;align-items:center;gap:6px}
+    nav.main-nav{position:sticky;top:0;z-index:100;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--dp-border);padding:0 24px}
+    .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:68px}
+    .nav-logo{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:800;display:flex;align-items:center;gap:10px}
+    .logo-dp{color:var(--dp-cyan)}.logo-badge{width:36px;height:36px;background:linear-gradient(135deg,var(--dp-blue),var(--dp-cyan));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+    .nav-links{display:flex;align-items:center;gap:4px}.nav-links a{padding:8px 14px;border-radius:6px;font-size:.9rem;font-weight:500;color:var(--dp-muted);transition:all var(--transition)}
+    .nav-links a:hover,.nav-links a.active{color:var(--dp-white);background:var(--dp-card)}.nav-links a.active{color:var(--dp-cyan)}
+    .nav-cta{background:linear-gradient(135deg,var(--dp-blue),var(--dp-cyan));color:var(--dp-white)!important;padding:8px 20px!important;border-radius:8px!important;font-weight:600!important}
+    .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px;color:var(--dp-white);font-size:1.4rem}
+    footer.main-footer{background:var(--dp-dark);border-top:1px solid var(--dp-border);padding:56px 24px 28px;margin-top:80px}
+    .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:40px}
+    .footer-brand p{color:var(--dp-muted);font-size:.88rem;line-height:1.7;max-width:280px;margin-top:12px}
+    .footer-heading{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dp-cyan);margin-bottom:16px}
+    .footer-links li+li{margin-top:10px}.footer-links a{color:var(--dp-muted);font-size:.88rem;transition:color var(--transition)}.footer-links a:hover{color:var(--dp-white)}
+    .footer-contact-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px}.footer-contact-item p{color:var(--dp-muted);font-size:.84rem;line-height:1.5}.footer-contact-item a{color:var(--dp-cyan)}
+    .footer-bottom{max-width:1200px;margin:32px auto 0;padding-top:20px;border-top:1px solid var(--dp-border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:.82rem;color:var(--dp-muted)}
+    .footer-social{display:flex;gap:12px}.footer-social a{width:34px;height:34px;border-radius:8px;border:1px solid var(--dp-border);display:flex;align-items:center;justify-content:center;transition:all var(--transition)}.footer-social a:hover{border-color:var(--dp-cyan);color:var(--dp-cyan)}
+    .container{max-width:1200px;margin:0 auto;padding:0 24px}.section{padding:80px 0}
+    .section-label{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--dp-cyan);margin-bottom:12px}
+    .section-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.1;margin-bottom:20px}
+    .text-cyan{color:var(--dp-cyan)}.text-orange{color:var(--dp-orange)}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+    /* PAGE HERO */
+    .page-hero{padding:72px 24px 56px;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(26,79,214,.2) 0%,transparent 70%);border-bottom:1px solid var(--dp-border)}
+    .page-hero-inner{max-width:1200px;margin:0 auto;text-align:center}
+    .page-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:800;line-height:1.05;margin-bottom:16px}
+    .page-hero p{color:var(--dp-muted);font-size:1.05rem;max-width:580px;margin:0 auto;line-height:1.7}
+    .breadcrumb{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.82rem;color:var(--dp-muted);margin-bottom:20px}
+    .breadcrumb a{color:var(--dp-cyan)}.breadcrumb span{opacity:.4}
+    /* CONTACT CARDS */
+    .contact-card{background:var(--dp-card);border:1px solid var(--dp-border);border-radius:var(--radius);padding:28px;transition:all var(--transition)}
+    .contact-card:hover{border-color:rgba(0,194,224,.3);transform:translateY(-3px)}
+    .contact-card .ci-icon{width:48px;height:48px;border-radius:12px;background:rgba(0,194,224,.1);border:1px solid rgba(0,194,224,.2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:16px}
+    .contact-card h3{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:6px}
+    .contact-card p,.contact-card a{color:var(--dp-muted);font-size:.9rem;line-height:1.6}
+    .contact-card a{color:var(--dp-cyan);display:block;margin-top:4px}
+    .contact-card a:hover{text-decoration:underline}
+    /* FORM */
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .form-group{display:flex;flex-direction:column;gap:6px}
+    .form-group.full{grid-column:1/-1}
+    .form-group label{font-size:.82rem;font-weight:600;color:var(--dp-muted);letter-spacing:.04em}
+    .form-group input,.form-group select,.form-group textarea{background:var(--dp-card);border:1px solid var(--dp-border);border-radius:8px;padding:12px 16px;color:var(--dp-white);font-family:'DM Sans',sans-serif;font-size:.9rem;transition:border-color var(--transition);outline:none;width:100%}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:rgba(0,194,224,.5)}
+    .form-group select option{background:var(--dp-dark)}
+    .form-group textarea{resize:vertical;min-height:120px}
+    .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(123,139,170,.5)}
+    .btn-submit{background:linear-gradient(135deg,var(--dp-blue),var(--dp-cyan));color:var(--dp-white);padding:14px 32px;border-radius:8px;font-size:.95rem;font-weight:600;border:none;cursor:pointer;transition:all var(--transition);display:inline-flex;align-items:center;gap:8px}
+    .btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,194,224,.3)}
+    /* MAP PLACEHOLDER */
+    .map-placeholder{background:var(--dp-card);border:1px solid var(--dp-border);border-radius:var(--radius);height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--dp-muted);font-size:.9rem;overflow:hidden;position:relative}
+    .map-placeholder iframe{position:absolute;inset:0;width:100%;height:100%;border:none;border-radius:var(--radius)}
+    /* SUCCESS */
+    #successMsg{display:none;background:rgba(0,194,224,.1);border:1px solid rgba(0,194,224,.3);border-radius:8px;padding:16px 20px;color:var(--dp-cyan);font-size:.9rem;margin-top:12px}
+
+    @media(max-width:900px){.footer-inner{grid-template-columns:1fr 1fr}}
+    @media(max-width:640px){.nav-links{display:none}.nav-toggle{display:flex}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:var(--dp-dark);padding:16px;border-bottom:1px solid var(--dp-border)}.footer-inner{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="topbar-inner">
+    <div class="topbar-contact"><span>📞 Sales: <a href="tel:+919000000000">+91 9000000000</a></span><span>✉️ <a href="mailto:sales@gmail.com">sales@gmail.com</a></span></div>
+    <div class="topbar-contact"><span>🔧 Support: <a href="tel:+91777000007">+91 777000007</a></span><span>✉️ <a href="mailto:support@gmail.com">support@gmail.com</a></span></div>
+  </div></div>
+  <nav class="main-nav"><div class="nav-inner">
+    <a href="home.html" class="nav-logo"><div class="logo-badge">⚡</div><span><span class="logo-dp">AUTO</span> SYSTEM</span></a>
+    <button class="nav-toggle" id="navToggle">☰</button>
+    <ul class="nav-links" id="navLinks">
+    <li><a href="/">Home</a></li>
+    <li><a href="/services">Services</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/admin" class="nav-cta">Admin</a></li>
+</ul>
+  </div></nav>
+
+  <main>
+    <div class="page-hero"><div class="page-hero-inner">
+      <div class="breadcrumb"><a href="home.html">Home</a><span>/</span><span>Contact</span></div>
+      <div class="section-label">Get In Touch</div>
+      <h1>We're Here to <span class="text-cyan">Help</span></h1>
+      <p>Reach out for sales inquiries, technical support, or to schedule a site visit. Our team responds within 4 hours.</p>
+    </div></div>
+
+    <section class="section">
+      <div class="container">
+
+        <!-- CONTACT INFO CARDS -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:56px">
+          <div class="contact-card">
+            <div class="ci-icon">📞</div>
+            <h3>Sales</h3>
+            <p>Mon–Sat, 9am–7pm</p>
+            <a href="tel:+919000000086">+91 9000000086</a>
+            <a href="mailto:sales@gmail.com">sales@gmail.com</a>
+          </div>
+          <div class="contact-card">
+            <div class="ci-icon" style="background:rgba(247,107,28,.1);border-color:rgba(247,107,28,.2)">🔧</div>
+            <h3>Support</h3>
+            <p>24×7 Emergency Line</p>
+            <a href="tel:+91777000007" style="color:var(--dp-orange)">+91 777000007</a>
+            <a href="mailto:support@gmail.com">support@gmail.com</a>
+          </div>
+          <div class="contact-card">
+            <div class="ci-icon">🏢</div>
+            <h3>Corporate Office</h3>
+            <p><Address>123 Business Avenue, Suite 100, Mumbai – 400001</Address></p>
+          </div>
+          <div class="contact-card">
+            <div class="ci-icon">🏪</div>
+            <h3>Sales Office</h3>
+            <p><Address>456 Sales Street, Suite 200, Delhi – 110001</Address></p>
+          </div>
+        </div>
+
+        <!-- CONTACT FORM + MAP -->
+        <div style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:start">
+          <div>
+            <div class="section-label">Send a Message</div>
+            <h2 class="section-title" style="margin-bottom:28px">Let's <span class="text-cyan">Talk</span></h2>
+            <div style="background:var(--dp-card);border:1px solid var(--dp-border);border-radius:var(--radius);padding:36px">
+              <!-- ONLY FORM SECTION UPDATED -->
+
+<form method="POST" action="/contact">
+  <div class="form-grid">
+
+    <div class="form-group">
+      <label>Full Name *</label>
+      <input type="text" name="name" placeholder="Your full name" required>
+    </div>
+
+    <div class="form-group">
+      <label>Phone Number *</label>
+      <input type="tel" name="phone" placeholder="+91 XXXXX XXXXX" required>
+    </div>
+
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" name="email" placeholder="you@company.com">
+    </div>
+
+    <div class="form-group">
+      <label>Company Name</label>
+      <input type="text" name="company" placeholder="Your organization">
+    </div>
+
+    <div class="form-group full">
+      <label>Enquiry Type</label>
+      <select name="enquiry_type">
+        <option value="">Select enquiry type</option>
+        <option>Automation Workflows</option>
+        <option>mail automation</option>
+        <option>number automation</option>
+        <option>message automation</option>
+        <option>Numeric automation</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="form-group full">
+      <label>Message</label>
+      <textarea name="message" placeholder="Describe your requirement..."></textarea>
+    </div>
+
+  </div>
+
+  <div style="margin-top:20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+    <button type="submit" class="btn-submit">Send Message ↗</button>
+    <span style="font-size:.82rem;color:var(--dp-muted)">We reply within 4 business hours</span>
+  </div>
+
+</form>
+
+<!-- SUCCESS MESSAGE (FLASK CONTROLLED) -->
+{% if success %}
+<div id="successMsg" style="display:block;">
+  ✅ Thank you! Your message has been sent. We'll be in touch shortly.
+</div>
+{% endif %}
+            <div class="section-label">Find Us</div>
+            <h2 class="section-title" style="margin-bottom:28px">Our <span class="text-cyan">Location</span></h2>
+            <div class="map-placeholder">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.0!2d73.8567!3d18.6298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDM3JzQ3LjMiTiA3M8KwNTEnMjQuMSJF!5e0!3m2!1sen!2sin!4v1234567890"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+            <div style="margin-top:20px;display:flex;flex-direction:column;gap:12px">
+              <div style="background:var(--dp-card);border:1px solid var(--dp-border);border-radius:8px;padding:16px 20px">
+                <div style="font-size:.78rem;font-weight:700;color:var(--dp-cyan);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px">Corporate Office</div>
+                <p style="font-size:.88rem;color:var(--dp-muted)">123 Business Avenue, Suite 100, Mumbai – 400001</p>
+              <div style="background:var(--dp-card);border:1px solid var(--dp-border);border-radius:8px;padding:16px 20px">
+                <div style="font-size:.78rem;font-weight:700;color:var(--dp-orange);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px">Sales Office</div>
+                <p style="font-size:.88rem;color:var(--dp-muted)">456 Sales Street, Suite 200, Delhi – 110001</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WORKING HOURS -->
+        <div style="margin-top:56px">
+          <div class="section-label">Availability</div>
+          <h2 class="section-title" style="margin-bottom:32px">Business <span class="text-cyan">Hours</span></h2>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+            <div style="background:var(--dp-card);border:1px solid var(--dp-border);border-radius:var(--radius);padding:24px;text-align:center">
+              <div style="font-size:2rem;margin-bottom:12px">☀️</div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:6px">Sales</div>
+              <div style="color:var(--dp-cyan);font-weight:600;font-size:.9rem">Mon – Sat</div>
+              <div style="color:var(--dp-muted);font-size:.88rem">9:00 AM – 7:00 PM</div>
+            </div>
+            <div style="background:var(--dp-card);border:1px solid rgba(247,107,28,.25);border-radius:var(--radius);padding:24px;text-align:center">
+              <div style="font-size:2rem;margin-bottom:12px">🔧</div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:6px">Technical Support</div>
+              <div style="color:var(--dp-orange);font-weight:600;font-size:.9rem">7 Days a Week</div>
+              <div style="color:var(--dp-muted);font-size:.88rem">24 × 7 Emergency Line</div>
+            </div>
+            <div style="background:var(--dp-card);border:1px solid var(--dp-border);border-radius:var(--radius);padding:24px;text-align:center">
+              <div style="font-size:2rem;margin-bottom:12px">📧</div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:6px">Email Response</div>
+              <div style="color:var(--dp-cyan);font-weight:600;font-size:.9rem">All Days</div>
+              <div style="color:var(--dp-muted);font-size:.88rem">Within 4 Business Hours</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><div class="nav-logo" style="margin-bottom:12px"><div class="logo-badge">⚡</div><span><span class="logo-dp">D&amp;P</span> ELECTRONICS</span></div><p>Established in 2004. Trusted power solutions across India.</p></div>
+      <div><div class="footer-heading">Navigate</div><ul class="footer-links"><li><a href="home.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><div class="footer-heading">Offers</div><ul class="footer-links"><li><a href="#">mail automation</a></li><li><a href="#">number automation</a></li><li><a href="#">message automation</a></li><li><a href="#">automation</a></li></ul></div>
+      <div>
+        <div class="footer-heading">Contact Us</div>
+        <div class="footer-contact-item"><span>📞</span><p><a href="tel:9000000000">+91 9000000000</a> (Sales)</p></div>
+        <div class="footer-contact-item"><span>🔧</span><p><a href="tel:+917770000007">+91 7770000007</a> (Support)</p></div>
+        <div class="footer-contact-item"><span>✉️</span><p><a href="mailto:sales@dandpelectronics.in">sales@dandpelectronics.in</a></p></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2024 D&amp;P Electronics. All rights reserved.</span><div class="footer-social"><a href="#">f</a><a href="#">✉</a></div></div>
+  </footer>
+  
+</body>
+</html>
